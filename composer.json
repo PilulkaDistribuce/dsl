@@ -2,6 +2,7 @@
   "name": "pilulka/dsl",
   "description": "Extendable implementation of Domain Specific Language (DSL).",
   "keywords": ["DSL", "programming language", "Domain Specific Language"],
+  "license": ["MIT"],
   "authors": [
     {
       "name": "Martin Krizan",
