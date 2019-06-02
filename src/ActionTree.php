@@ -76,11 +76,11 @@ class ActionTree
         if (!isset($token)) {
             return new Representation();
         }
-        Assert::keyExists(
-            $this->operations,
-            $token->getId(),
-            "Operation `{$token->getId()}` is not implemented or registered."
-        );
+        if(!array_key_exists($token->getId(), $this->operations)) {
+            throw new \InvalidArgumentException(
+                "Operation `{$token->getId()}` is not implemented or registered."
+            );
+        }
         $className = $this->operations[$token->getId()];
         return new $className;
     }
