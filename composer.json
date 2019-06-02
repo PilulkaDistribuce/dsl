@@ -1,0 +1,29 @@
+{
+  "name": "pilulka/dsl",
+  "description": "Extendable implementation of Domain Specific Language (DSL).",
+  "keywords": ["DSL", "programming language", "Domain Specific Language"],
+  "authors": [
+    {
+      "name": "Martin Krizan",
+      "email": "martin@krizanovi.cz",
+      "homepage": "http://www.martinkrizan.com",
+      "role": "CTO"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "Pilulka\\DSL\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Pilulka\\DSL\\": "tests/"
+    }
+  },
+  "require": {
+    "webmozart/assert": "^1.4"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^7.5"
+  }
+}

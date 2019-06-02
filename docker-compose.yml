@@ -1,0 +1,17 @@
+version: '3'
+services:
+
+  php:
+    image: krizius/pilulka-php-apache
+    volumes:
+      - ~/.ssh:/root/.ssh
+      - .:/var/www
+    environment:
+      XDEBUG_CONFIG: 'remote_enable=0'
+    networks:
+      - feeds
+    restart: always
+
+networks:
+  feeds:
+    driver: bridge
