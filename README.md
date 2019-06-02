@@ -61,4 +61,3 @@ If you need to load your custom operations with external dependencies use your o
 I will recommend you to use some dependency injection container implementation and register your loader with it.
 
 *Note: You will have to implement also internal operation loading. It's king of trivial task.*
-
