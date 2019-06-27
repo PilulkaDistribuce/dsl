@@ -32,10 +32,9 @@ class ActionTree
     public function __construct(
         array $operations = [],
         OperationLoaderInterface $operationLoader = null
-    )
-    {
+    ) {
         $this->operations += $operations;
-        if(!isset($operationLoader)) {
+        if (!isset($operationLoader)) {
             $operationLoader = new SimpleOperationLoader();
         }
         $this->operationLoader = $operationLoader;
@@ -52,12 +51,22 @@ class ActionTree
         $operation = $this->dispatchOperation($root['operation']);
         $inputs = [];
         foreach ($root['items'] as $item) {
+
             if (is_array($item)) {
                 $inputs[] = $this->evaluate($item, $context);
             }
             if ($item instanceof Token) {
                 if ($item->getType() == Token::VARIABLE) {
-                    $inputs[] = $context[$item->getId()];
+                    if (stripos($item->getId(), '__') !== false) {
+                        $exploded = explode('__', $item->getId());
+                        $inputs[] = [
+                            'value' => $context[$exploded[0]],
+                            'key' => $exploded[1],
+                        ];
+
+                    } else {
+                        $inputs[] = $context[$item->getId()];
+                    }
                 }
                 if ($item->getType() == Token::NUMBER) {
                     $inputs[] = (float)$item->getId();
@@ -76,7 +85,7 @@ class ActionTree
         if (!isset($token)) {
             return new Representation();
         }
-        if(!array_key_exists($token->getId(), $this->operations)) {
+        if (!array_key_exists($token->getId(), $this->operations)) {
             throw new \InvalidArgumentException(
                 "Operation `{$token->getId()}` is not implemented or registered."
             );
