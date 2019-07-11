@@ -29,7 +29,7 @@ class Tokenizer
         if ($success) {
             foreach ($matches[0] as $key => $match) {
                 $token = [];
-                $typeName = null;
+                $typeName = Token::TEXT;
                 foreach ($this->getTypes() as $type) {
                     if ($matches[$type][$key] !== '') {
                         $typeName = $type;
@@ -85,7 +85,7 @@ class Tokenizer
             '{(?<' . Token::VARIABLE . '>[á-žÁ-Ž \w]+)}',
             '(?<' . Token::OPERATION . '>' . $this->getOperations() . ')',
             '{(?<' . Token::NUMBER . '>[+-]{0,1}[0-9]+\.[0-9]+)}',
-            '{"(?<' . Token::TEXT . '>.*)"}',
+            '{"(?<' . Token::TEXT . '>.*?)"}',
         ];
     }
 
