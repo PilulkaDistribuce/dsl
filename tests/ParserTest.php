@@ -32,6 +32,7 @@ class ParserTest extends TestCase
             ['{a} + {b} + {c}', '(+ (+ {a} {b}) {c})'],
             ['({a} + {b}) * {c}', '(* (+ {a} {b}) {c})'],
             ['{a} + {b}', '(+ {a} {b})'],
+            ['(max (max {a} {b} {c}) {d} {e})', '(max (max {a} {b} {c}) {d} {e})']
         ];
     }
 
