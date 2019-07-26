@@ -25,7 +25,7 @@ class Parser
     }
 
 
-    private function createAST(\Generator $tokens): array
+    private function createAST(\Generator $tokens, $depth = 1): array
     {
         $res = [
             'operation' => null,
@@ -49,12 +49,16 @@ class Parser
 
             if ($token->getType() == Token::OPEN_BRACKET) {
                 if ($res['operation'] !== null) {
-                    $res['items'][] = $this->createAST($tokens);
+                    $res['items'][] = $this->createAST($tokens, $depth + 1);
                 }
             }
 
             if ($token->getId() !== null && $token->getType() !== Token::OPERATION) {
                 $res['items'][] = $token;
+            }
+
+            if($token->getType() === Token::CLOSE_BRACKET && $depth > 1) {
+                return $res;
             }
         }
         return $res;

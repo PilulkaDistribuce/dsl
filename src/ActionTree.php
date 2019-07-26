@@ -65,7 +65,7 @@ class ActionTree
                         ];
 
                     } else {
-                        $inputs[] = $context[$item->getId()];
+                        $inputs[] = $context[$item->getId()] ?? "";
                     }
                 }
                 if ($item->getType() == Token::NUMBER) {
