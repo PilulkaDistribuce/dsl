@@ -82,7 +82,7 @@ class Tokenizer
         return [
             '(?<' . Token::OPEN_BRACKET . '>[\(]{1})',
             '(?<' . Token::CLOSE_BRACKET . '>[\)]{1})',
-            '{(?<' . Token::VARIABLE . '>[á-žÁ-Ž \w]+)}',
+            '{(?<' . Token::VARIABLE . '>[á-žÁ-Ž\s\w()-]+)}',
             '(?<' . Token::OPERATION . '>' . $this->getOperations() . ')',
             '{(?<' . Token::NUMBER . '>[+-]{0,1}[0-9]+\.[0-9]+)}',
             '{"(?<' . Token::TEXT . '>.*?)"}',
