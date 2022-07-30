@@ -10,10 +10,12 @@ class Multiplication implements OperationInterface
     {
         $res = null;
         foreach ($inputs as $item) {
-            if (!isset($res)) {
-                $res = $item;
-            } else {
-                $res *= $item;
+            if(is_numeric($item)) {
+                if (!isset($res)) {
+                    $res = $item;
+                } else {
+                    $res *= $item;
+                }
             }
         }
         return $res;

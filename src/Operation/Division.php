@@ -10,15 +10,17 @@ class Division implements OperationInterface
     {
         $res = null;
         foreach ($inputs as $input) {
-            if(!isset($res)) {
-                $res = $input;
-            } else {
-                if($input === 0) {
-                    throw new \InvalidArgumentException(
-                        "Division by zero."
-                    );
+            if (is_numeric($input)) {
+                if (!isset($res)) {
+                    $res = $input;
+                } else {
+                    if ($input === 0) {
+                        throw new \InvalidArgumentException(
+                            "Division by zero."
+                        );
+                    }
+                    $res /= $input;
                 }
-                $res /= $input;
             }
         }
 

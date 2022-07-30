@@ -14,7 +14,7 @@ class ActionTreeTest extends TestCase
      * @param $expectedResult
      * @dataProvider provideTestData
      */
-    public function testExecute(string $input, array $context,  $expectedResult)
+    public function testExecute(string $input, array $context, $expectedResult)
     {
         $parser = new Parser();
         $ast = $parser->parse($input);
@@ -31,7 +31,9 @@ class ActionTreeTest extends TestCase
             ['(max {a} {b} {c})', ['a' => 49, 'b' => -7, 'c' => 0], 49],
             ['({a} - {b}) / {b}', ['a' => 49, 'b' => -7,], -8],
             ['{a} / {b}', ['a' => 49, 'b' => -7,], -7],
+            ['{a} / {b} / 2', ['b' => -7,], -7],
             ['{a} * {b}', ['a' => 7, 'b' => -7,], -49],
+            ['{a} * {b}', ['b' => -7,], -7],
             ['({a} + {b}) - {c}', ['a' => 5, 'b' => 2, 'c' => 20], -13],
             ['{a} - {b}', ['a' => 5, 'b' => 2], 3],
             ['{a} + {b}', ['a' => 1, 'b' => 4], 5],

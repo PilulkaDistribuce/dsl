@@ -1,0 +1,8 @@
+language: php
+sudo: false
+dist: bionic
+php:
+  - '7.4'
+  - '8.0'
+script:
+  - php vendor/bin/phpunit
