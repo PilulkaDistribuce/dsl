@@ -4,5 +4,7 @@ dist: bionic
 php:
   - '7.4'
   - '8.0'
+install:
+  - travis_retry composer install
 script:
   - php vendor/bin/phpunit
